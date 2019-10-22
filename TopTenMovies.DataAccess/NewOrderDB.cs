@@ -9,7 +9,7 @@ namespace TopTenMovies.DataAccess
 {
     public class NewOrderDB
     {
-        public void PlaceNewOrderDB(int customerId, int filmProductId, int filmLocationId, int filmQuantityId, decimal orderTotal)
+        public void PlaceNewOrderDB(int customerId, int filmProductId, int filmLocationId)
         {
             string connectionString = SecretConfiguration.ConnectionString;
 
@@ -26,8 +26,8 @@ namespace TopTenMovies.DataAccess
             newOrder.CustomerId = customerId;
             newOrder.ProductId = filmProductId;
             newOrder.LocationId = filmLocationId;
-            newOrder.Quantity = filmQuantityId;
-            newOrder.OrderTotal = orderTotal;
+            newOrder.Quantity = 1;
+            newOrder.OrderTotal = (decimal)10.99;
             newOrder.OrderTime = dateTime;
 
             context.Orders.Add(newOrder);

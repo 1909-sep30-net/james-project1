@@ -8,7 +8,7 @@ namespace TopTenMovies.DataAccess
 {
     public class AllProductsDB
     {
-        public void GetAllProducts()
+        public List<Product> GetAllProducts()
         {
             string connectionString = SecretConfiguration.ConnectionString;
 
@@ -18,10 +18,20 @@ namespace TopTenMovies.DataAccess
 
             using var context = new TopTenMoviesContext(options);
 
-           foreach (Product product in context.Product)
+            List<Product> products = new List<Product>();
+
+            foreach (Product product in context.Product)
             {
-                Console.WriteLine($"[ProductId] {product.ProductId} [Title] {product.Title}");
+                Product displayProduct = new Product();
+
+                displayProduct.ProductId = product.ProductId;
+                displayProduct.Title = product.Title;
+
+                products.Add(displayProduct);
+
             }
+
+            return products;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace TopTenMovies.DataAccess
 {
     public class AllLocationsDB
     {
-        public void GetAllLocationsDB()
+        public List<Location> GetAllLocationsDB()
         {
             string connectionString = SecretConfiguration.ConnectionString;
 
@@ -18,10 +18,20 @@ namespace TopTenMovies.DataAccess
 
             using var context = new TopTenMoviesContext(options);
 
+            List<Location> locations = new List<Location>();
+
             foreach (Location location in context.Location)
             {
-                Console.WriteLine($"[LocationId] {location.LocationId} [City] {location.City}");
+                Location displayLocation = new Location();
+
+                displayLocation.LocationId = location.LocationId;
+                displayLocation.City = location.City;
+
+                locations.Add(displayLocation);
+
             }
+
+            return locations;
         }
     }
 }

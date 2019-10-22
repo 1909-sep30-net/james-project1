@@ -12,8 +12,8 @@ namespace TopTenMovies.WebApp.Controllers
 {
     public class CustomerController : Controller
     {
-        AllCustomersDB allcust = new AllCustomersDB();
-        AddCustomerDB addCust = new AddCustomerDB();
+        AllCustomersDB allCustomers = new AllCustomersDB();
+        AddCustomerDB addCustomer = new AddCustomerDB();
         
 
         // GET: Customer
@@ -22,10 +22,10 @@ namespace TopTenMovies.WebApp.Controllers
             return View();
         }
 
-        // GET: Customer/Details/5
+        // GET: Customer/ListCustomers/5
         public ActionResult ListCustomers()
         {
-            List<Customer> customers = allcust.GetAllCustomersDB();
+            List<Customer> customers = allCustomers.GetAllCustomersDB();
             return View(customers);
         }
 
@@ -44,14 +44,13 @@ namespace TopTenMovies.WebApp.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-                Customer cust = new Customer
+                Customer customer = new Customer
                 {
                     FirstName = collection["FirstName"],
                     LastName = collection["LastName"]
                 };
 
-                addCust.AddNewCustomerDB(cust);
+                addCustomer.AddNewCustomerDB(customer);
 
                 return RedirectToAction(nameof(ListCustomers));
             }

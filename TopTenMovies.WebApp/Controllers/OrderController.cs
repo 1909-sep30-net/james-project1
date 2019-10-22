@@ -4,48 +4,55 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TopTenMovies.DataAccess;
+using TopTenMovies.DataAccess.Entities;
 
 namespace TopTenMovies.WebApp.Controllers
 {
     public class OrderController : Controller
     {
+        AllCustomersDB allCustomers = new AllCustomersDB();
+        AllProductsDB allProducts = new AllProductsDB();
+        AllLocationsDB allLocations = new AllLocationsDB();
+        NewOrderDB newOrder = new NewOrderDB();
+        AllOrdersDB allOrders = new AllOrdersDB();
+
+
+        int customerId;
+        int productId;
+        int locationId;
+
+
         // GET: Order
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Order/Details/5
-        public ActionResult Details(int id)
+        // GET: Order/Select Customer
+        public ActionResult SelectCustomer()
         {
-            return View();
+            List<Customer> customers = allCustomers.GetAllCustomersDB();
+
+            return View(customers);
         }
 
-        // GET: Order/Create
-        public ActionResult Create()
+        // GET: Order/Display Products
+        public ActionResult ProductList()
         {
-            return View();
+            List<Product> products = allProducts.GetAllProducts();
+
+            return View(products);
         }
 
-        // POST: Order/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult SelectLocation()
         {
-            try
-            {
-                // TODO: Add insert logic here
+            List<Location> locations = allLocations.GetAllLocationsDB();
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View(locations);
         }
 
-        // GET: Order/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult CreateOrder()
         {
             return View();
         }
@@ -53,13 +60,13 @@ namespace TopTenMovies.WebApp.Controllers
         // POST: Order/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult CreateOrder(IFormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                newOrder.PlaceNewOrderDB(customerId, productId, locationId);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(OrderPlaced));
             }
             catch
             {
@@ -67,10 +74,59 @@ namespace TopTenMovies.WebApp.Controllers
             }
         }
 
-        // GET: Order/Delete/5
-        public ActionResult Delete(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SetCustomer(IFormCollection collection)
         {
-            return View();
+            try
+            {
+                customerId = int.Parse(collection["selectCustomer"]);
+
+                return RedirectToAction(nameof(ProductList));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SetProduct(IFormCollection collection)
+        {
+            try
+            {
+                productId = int.Parse(collection["selectProduct"]);
+
+                return RedirectToAction(nameof(SelectLocation));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SetLocation(IFormCollection collection)
+        {
+            try
+            {
+                locationId = int.Parse(collection["selectLocation"]);
+
+                return RedirectToAction(nameof(CreateOrder));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+       
+        public ActionResult OrderPlaced()
+        {
+            List<OrderDisplay> displayAllOrders = allOrders.GetAllOrdersDB();
+
+            return View(displayAllOrders);
         }
 
         // POST: Order/Delete/5

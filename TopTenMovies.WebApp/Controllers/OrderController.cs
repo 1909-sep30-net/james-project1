@@ -18,9 +18,9 @@ namespace TopTenMovies.WebApp.Controllers
         AllOrdersDB allOrders = new AllOrdersDB();
 
 
-        int customerId;
-        int productId;
-        int locationId;
+        static int customerId;
+        static int productId;
+        static int locationId;
 
 
         // GET: Order
@@ -121,7 +121,7 @@ namespace TopTenMovies.WebApp.Controllers
                 return View();
             }
         }
-       
+        
         public ActionResult OrderPlaced()
         {
             List<OrderDisplay> displayAllOrders = allOrders.GetAllOrdersDB();

@@ -11,19 +11,19 @@ namespace TopTenMovies.DataAccess
     {
         public void AddNewCustomerDB(Customer cust)
         {
-            string connectionString = SecretConfiguration.ConnectionString;
+            //string connectionString = SecretConfiguration.ConnectionString;
 
-            DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
-                .UseSqlServer(connectionString)
-                .Options;
+            //DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
+            //    .UseSqlServer(connectionString)
+            //    .Options;
 
-            using var context = new TopTenMoviesContext(options);
+            //using var context = new TopTenMoviesContext(options);
 
             
 
-            context.Customer.Add(cust);
+            //context.Customer.Add(cust);
 
-            context.SaveChanges();
+            //context.SaveChanges();
 
 
         }

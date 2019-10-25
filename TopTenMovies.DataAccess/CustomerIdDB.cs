@@ -12,23 +12,25 @@ namespace TopTenMovies.DataAccess
     {
         public int GetCustomerIdDB(string firstName, string lastName)
         {
-            string connectionString = SecretConfiguration.ConnectionString;
+            //string connectionString = SecretConfiguration.ConnectionString;
 
-            DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
-                .UseSqlServer(connectionString)
-                .Options;
+            //DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
+            //    .UseSqlServer(connectionString)
+            //    .Options;
 
-            using var context = new TopTenMoviesContext(options);
+            //using var context = new TopTenMoviesContext(options);
 
-            var foundName = context.Customer.FirstOrDefault(p => p.FirstName == firstName && p.LastName == lastName);
+            //var foundName = context.Customer.FirstOrDefault(p => p.FirstName == firstName && p.LastName == lastName);
 
-            if (foundName is null)
-            {
-                Console.WriteLine("No Record Found");
-                return 0;
-            }
-            else
-                return foundName.CustomerId;
+            //if (foundName is null)
+            //{
+            //    Console.WriteLine("No Record Found");
+            //    return 0;
+            //}
+            //else
+            //    return foundName.CustomerId;
+            int temp = 0;
+            return temp;
         }
     }
 }

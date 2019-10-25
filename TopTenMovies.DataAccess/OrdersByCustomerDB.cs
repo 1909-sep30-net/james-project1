@@ -11,27 +11,27 @@ namespace TopTenMovies.DataAccess
     {
         public void GetOrdersByCustomerDB(int customerID)
         {
-            string connectionString = SecretConfiguration.ConnectionString;
+            //string connectionString = SecretConfiguration.ConnectionString;
 
-            DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
-                .UseSqlServer(connectionString)
-                .Options;
+            //DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
+            //    .UseSqlServer(connectionString)
+            //    .Options;
 
-            using var context = new TopTenMoviesContext(options);
-            using var context2 = new TopTenMoviesContext(options);
-            using var context3 = new TopTenMoviesContext(options);
+            //using var context = new TopTenMoviesContext(options);
+            //using var context2 = new TopTenMoviesContext(options);
+            //using var context3 = new TopTenMoviesContext(options);
 
-            foreach (Orders order in context.Orders)
-            {
-                var title = context2.Product.FirstOrDefault(p => p.ProductId == order.ProductId);
-                var location = context3.Location.FirstOrDefault(p => p.LocationId == order.LocationId);
+            //foreach (Orders order in context.Orders)
+            //{
+            //    var title = context2.Product.FirstOrDefault(p => p.ProductId == order.ProductId);
+            //    var location = context3.Location.FirstOrDefault(p => p.LocationId == order.LocationId);
 
-                if (order.CustomerId == customerID)
-                {
-                    Console.WriteLine($"[CustomerId] {order.CustomerId} [Location] {location.City} [Title] {title.Title} " +
-                        $"[Quantity] {order.Quantity}");
-                }         
-            }
+            //    if (order.CustomerId == customerID)
+            //    {
+            //        Console.WriteLine($"[CustomerId] {order.CustomerId} [Location] {location.City} [Title] {title.Title} " +
+            //            $"[Quantity] {order.Quantity}");
+            //    }         
+            //}
         }
     }
 }

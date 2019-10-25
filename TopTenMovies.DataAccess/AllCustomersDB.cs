@@ -10,27 +10,27 @@ namespace TopTenMovies.DataAccess
     {
         public List<Customer> GetAllCustomersDB()
         {
-            string connectionString = SecretConfiguration.ConnectionString;
+            //string connectionString = SecretConfiguration.ConnectionString;
 
-            DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
-                .UseSqlServer(connectionString)
-                .Options;
+            //DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
+            //    .UseSqlServer(connectionString)
+            //    .Options;
 
-            using var context = new TopTenMoviesContext(options);
+            //using var context = new TopTenMoviesContext(options);
 
             List<Customer> cust = new List<Customer>();
 
-            foreach (Customer customer in context.Customer)
-            {
-                Customer tempCust = new Customer();
+            //foreach (Customer customer in context.Customer)
+            //{
+            //    Customer tempCust = new Customer();
 
-                tempCust.CustomerId = customer.CustomerId;
-                tempCust.FirstName = customer.FirstName;
-                tempCust.LastName = customer.LastName;
+            //    tempCust.CustomerId = customer.CustomerId;
+            //    tempCust.FirstName = customer.FirstName;
+            //    tempCust.LastName = customer.LastName;
 
-                cust.Add(tempCust);
+            //    cust.Add(tempCust);
 
-            }
+            //}
 
             return cust;
         }

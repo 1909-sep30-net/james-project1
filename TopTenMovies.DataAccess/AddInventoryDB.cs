@@ -11,28 +11,28 @@ namespace TopTenMovies.DataAccess
     {
         public void AddNewInventoryDB(string filmTitle, string filmPrice)
         {
-            string connectionString = SecretConfiguration.ConnectionString;
+        //    string connectionString = SecretConfiguration.ConnectionString;
 
-            DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
-                .UseSqlServer(connectionString)
-                .Options;
+        //    DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
+        //        .UseSqlServer(connectionString)
+        //        .Options;
 
-            using var context = new TopTenMoviesContext(options);
+        //    using var context = new TopTenMoviesContext(options);
 
-            var product = new Product();
+        //    var product = new Product();
 
-            product.Title = filmTitle;
-            product.Price = decimal.Parse(filmPrice);
+        //    product.Title = filmTitle;
+        //    product.Price = decimal.Parse(filmPrice);
 
-            context.Product.Add(product);
+        //    context.Product.Add(product);
 
-            context.SaveChanges();
+        //    context.SaveChanges();
 
-            Console.Clear();
-            Console.WriteLine("Top Ten Video Store\n");
-            Console.WriteLine($"{product.Title} ${product.Price} Added.\n");
-            Console.WriteLine("Hit any Key to Continue: ");
-            Console.ReadKey();
+        //    Console.Clear();
+        //    Console.WriteLine("Top Ten Video Store\n");
+        //    Console.WriteLine($"{product.Title} ${product.Price} Added.\n");
+        //    Console.WriteLine("Hit any Key to Continue: ");
+        //    Console.ReadKey();
         }
 
     }

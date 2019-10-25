@@ -10,26 +10,26 @@ namespace TopTenMovies.DataAccess
     {
         public List<Location> GetAllLocationsDB()
         {
-            string connectionString = SecretConfiguration.ConnectionString;
+            //string connectionString = SecretConfiguration.ConnectionString;
 
-            DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
-                .UseSqlServer(connectionString)
-                .Options;
+            //DbContextOptions<TopTenMoviesContext> options = new DbContextOptionsBuilder<TopTenMoviesContext>()
+            //    .UseSqlServer(connectionString)
+            //    .Options;
 
-            using var context = new TopTenMoviesContext(options);
+            //using var context = new TopTenMoviesContext(options);
 
             List<Location> locations = new List<Location>();
 
-            foreach (Location location in context.Location)
-            {
-                Location displayLocation = new Location();
+            //foreach (Location location in context.Location)
+            //{
+            //    Location displayLocation = new Location();
 
-                displayLocation.LocationId = location.LocationId;
-                displayLocation.City = location.City;
+            //    displayLocation.LocationId = location.LocationId;
+            //    displayLocation.City = location.City;
 
-                locations.Add(displayLocation);
+            //    locations.Add(displayLocation);
 
-            }
+            //}
 
             return locations;
         }

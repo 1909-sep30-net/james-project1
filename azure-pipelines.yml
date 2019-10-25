@@ -13,5 +13,15 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloud_parsons'
+    organization: 'revatureparsons'
+    scannerMode: 'MSBuild'
+    projectKey: '9242e44db7d124ae21721053f673285ef40adb9d'
+    projectName: 'somename'
+
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+
+- task: SonarCloudAnalyze@1
